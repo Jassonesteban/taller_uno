@@ -8,6 +8,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 /**
  * The Class ProjectTaskDTO.
@@ -55,6 +57,7 @@ public class ProjectTaskDTO implements Serializable {
     private String projectIdentifier;
 
     /** The backlog. */
+    @JsonProperty(access = Access.WRITE_ONLY)
     private BacklogDTO backlog;
 
     /**
@@ -248,7 +251,6 @@ public class ProjectTaskDTO implements Serializable {
      *
      * @return the backlog
      */
-    @JsonIgnore
     public BacklogDTO getBacklog() {
         return backlog;
     }

@@ -33,14 +33,14 @@ public class Backlog {
     private String projectIdentifier;
 
     /** The project. */
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinTable(name = "backlog_project", joinColumns = {
             @JoinColumn(name = "backlog_id", referencedColumnName = "id") }, inverseJoinColumns = {
                     @JoinColumn(name = "project_id", referencedColumnName = "id") })
     private Project project;
 
     /** The project task. */
-    @OneToMany(mappedBy = "backlog")
+    @OneToMany(mappedBy = "backlog", cascade = CascadeType.DETACH)
     private List<ProjectTask> projectTask;
 
     /**

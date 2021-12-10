@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * The Class ProjectDTO.
  */
@@ -157,6 +159,7 @@ public class ProjectDTO implements Serializable {
      *
      * @return the backlog
      */
+    @JsonIgnore
     public BacklogDTO getBacklog() {
         return backlog;
     }
