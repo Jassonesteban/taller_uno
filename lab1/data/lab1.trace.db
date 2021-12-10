@@ -1,0 +1,4 @@
+2021-12-02 18:01:38 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PROJECT" no encontrada
+Table "PROJECT" not found; SQL statement:
+select project0_.id as id1_2_, project0_.description as descript2_2_, project0_.end_date as end_date3_2_, project0_.project_identifier as project_4_2_, project0_.project_name as project_5_2_, project0_.start_date as start_da6_2_, project0_1_.backlog_id as backlog_0_1_ from project project0_ left outer join backlog_project project0_1_ on project0_.id=project0_1_.project_id where project0_.project_identifier=? or project0_.project_name=? [42102-200]
