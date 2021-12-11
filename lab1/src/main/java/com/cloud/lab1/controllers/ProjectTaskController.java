@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,7 +21,6 @@ import com.cloud.lab1.dtos.ProjectTaskDTO;
 import com.cloud.lab1.dtos.StatusDTO;
 import com.cloud.lab1.models.ProjectTask;
 import com.cloud.lab1.services.ProjectTaskService;
-import com.commons.utils.CustomMapper;
 
 /**
  * The Class ProjectTaskController.
@@ -56,11 +56,10 @@ public class ProjectTaskController extends BaseController {
 
         this.projectTaskService.validateProjectTask(projectTaskDTO);
 
-        ProjectTask projectTask = (ProjectTask) CustomMapper.mapper(projectTaskDTO,
+        ProjectTask projectTask = (ProjectTask) new ModelMapper().map(projectTaskDTO,
                 ProjectTask.class);
 
-        ProjectTaskDTO projectTaskResponseDTO = (ProjectTaskDTO) CustomMapper
-                .mapper(this.projectTaskService.saveProjectTask(projectTask), ProjectTaskDTO.class);
+        ProjectTaskDTO projectTaskResponseDTO = (ProjectTaskDTO) new ModelMapper().map(this.projectTaskService.saveProjectTask(projectTask), ProjectTaskDTO.class);
 
         return projectTaskResponseDTO;
     }
@@ -80,7 +79,7 @@ public class ProjectTaskController extends BaseController {
                 .getProjectTaskPerProject(projectIdentifier);
 
         List<ProjectTaskDTO> projectTasksResponseDTO = tasks.stream()
-                .map(pt -> (ProjectTaskDTO) CustomMapper.mapper(pt, ProjectTaskDTO.class))
+                .map(pt -> (ProjectTaskDTO) new ModelMapper().map(pt, ProjectTaskDTO.class))
                 .collect(Collectors.toList());
 
         return projectTasksResponseDTO;
